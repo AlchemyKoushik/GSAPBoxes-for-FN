@@ -27,7 +27,7 @@ export const WorkflowAutomationAnimation = ({ autoplay = true }: Props) => {
       tl.set('.tree-path, .inf-path', { strokeDasharray: '1500', strokeDashoffset: 1500 });
       tl.set('.tree-pulses', { opacity: 0 });
       tl.set('.tap-wave', { attr: { r: 0 }, opacity: 0 });
-      tl.set('.inf-dots', { opacity: 0, strokeDasharray: '4 40', strokeDashoffset: 0 });
+      tl.set('.inf-dots', { opacity: 0, strokeDasharray: '100 100', strokeDashoffset: 0 });
       
       tl.set('#n0', { x: -160, y: 0, opacity: 1, scale: 1 });
       tl.set('#n1', { x: 0, y: 0, opacity: 1, scale: 1 });
@@ -37,49 +37,45 @@ export const WorkflowAutomationAnimation = ({ autoplay = true }: Props) => {
       tl.set('#n0 .n0-tap, #n0 .n0-tree, #n1 .n1-tree', { opacity: 0, scale: 0.5 });
       
       tl.set('.wf-core', { scale: 0, opacity: 0 });
+      
+      // HIDE TASKS INITIALLY SO THEY DON'T APPEAR IN THE CENTER
+      tl.set(['#t3', '#t4', '#t5', '#t6', '#t7'], { x: -350, y: 0, opacity: 0 });
 
       // ==========================================
       // SCENE 01: PIPELINE (0.0s to 8.5s)
       // ==========================================
-      const T_TRANSITION = 8.5;
       const tasks = ['#t3', '#t4', '#t5', '#t6', '#t7'];
       
       tasks.forEach((id, index) => {
          let t = index * 0.9;
-         while (t < T_TRANSITION) {
-            let dur = Math.min(4.5, T_TRANSITION - t);
-            let endX = -350 + dur * (700 / 4.5);
-            
-            // Set starting values
-            tl.set(id, { x: -350, y: 0, opacity: 1, scale: 1, borderColor: 'rgba(255,255,255,0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }, t);
-            tl.set(`${id} .icon-svg`, { color: '#ff5b93' }, t);
-            tl.set(`${id} .card-check`, { opacity: 0, scale: 0.5 }, t);
+         
+         // Set starting values
+         tl.set(id, { x: -350, y: 0, opacity: 1, scale: 1, borderColor: 'rgba(255,255,255,0.1)', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }, t);
+         tl.set(`${id} .icon-svg`, { color: '#ff5b93' }, t);
+         tl.set(`${id} .card-check`, { opacity: 0, scale: 0.5 }, t);
 
-            // Move
-            tl.to(id, { x: endX, duration: dur, ease: 'none' }, t);
+         // Calculate exact duration until T_TRANSITION (8.5s) to avoid overlapping tweens
+         let dur = 8.5 - t;
+         let endX = -350 + (155.55 * dur);
 
-            // N0
-            if (t + 1.22 < T_TRANSITION) {
-               tl.to(id, { borderColor: 'rgba(55,217,160,0.3)', duration: 0.2 }, t + 1.22);
-               tl.to(`${id} .icon-svg`, { color: '#88e4c0', duration: 0.2 }, t + 1.22);
-               tl.to('#n0 .n0-pulse', { opacity: 1, scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }, t + 1.22);
-            }
-            // N1
-            if (t + 2.25 < T_TRANSITION) {
-               tl.to(id, { borderColor: 'rgba(55,217,160,0.6)', duration: 0.2 }, t + 2.25);
-               tl.to(`${id} .icon-svg`, { color: '#5ce4b0', duration: 0.2 }, t + 2.25);
-               tl.to('#n1 .n1-pulse', { opacity: 1, scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }, t + 2.25);
-            }
-            // N2
-            if (t + 3.28 < T_TRANSITION) {
-               tl.to(id, { borderColor: 'rgba(55,217,160,1)', boxShadow: '0 0 15px rgba(55,217,160,0.4)', duration: 0.2 }, t + 3.28);
-               tl.to(`${id} .icon-svg`, { color: '#37d9a0', duration: 0.2 }, t + 3.28);
-               tl.to(`${id} .card-check`, { opacity: 1, scale: 1, duration: 0.2, ease: 'back.out' }, t + 3.28);
-               tl.to('#n2 .n2-pulse', { opacity: 1, scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }, t + 3.28);
-            }
+         // Move exactly until the transition starts
+         tl.to(id, { x: endX, duration: dur, ease: 'none' }, t);
 
-            t += 4.5;
-         }
+         // N0
+         tl.to(id, { borderColor: 'rgba(55,217,160,0.3)', duration: 0.2 }, t + 1.22);
+         tl.to(`${id} .icon-svg`, { color: '#88e4c0', duration: 0.2 }, t + 1.22);
+         tl.to('#n0 .n0-pulse', { opacity: 1, scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }, t + 1.22);
+         
+         // N1
+         tl.to(id, { borderColor: 'rgba(55,217,160,0.6)', duration: 0.2 }, t + 2.25);
+         tl.to(`${id} .icon-svg`, { color: '#5ce4b0', duration: 0.2 }, t + 2.25);
+         tl.to('#n1 .n1-pulse', { opacity: 1, scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }, t + 2.25);
+         
+         // N2
+         tl.to(id, { borderColor: 'rgba(55,217,160,1)', boxShadow: '0 0 15px rgba(55,217,160,0.4)', duration: 0.2 }, t + 3.28);
+         tl.to(`${id} .icon-svg`, { color: '#37d9a0', duration: 0.2 }, t + 3.28);
+         tl.to(`${id} .card-check`, { opacity: 1, scale: 1, duration: 0.2, ease: 'back.out' }, t + 3.28);
+         tl.to('#n2 .n2-pulse', { opacity: 1, scale: 1.5, duration: 0.2, yoyo: true, repeat: 1 }, t + 3.28);
       });
 
       // ==========================================
@@ -234,8 +230,15 @@ export const WorkflowAutomationAnimation = ({ autoplay = true }: Props) => {
         </g>
 
         {/* Infinity Paths */}
+        <defs>
+          <linearGradient id="inf-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#e85d75" stopOpacity="0.2" />
+            <stop offset="50%" stopColor="#ff78af" stopOpacity="1" />
+            <stop offset="100%" stopColor="#e85d75" stopOpacity="0.2" />
+          </linearGradient>
+        </defs>
         <path className="inf-path" d="M 0 0 C 100 -100, 200 -100, 200 0 C 200 100, 100 100, 0 0 C -100 -100, -200 -100, -200 0 C -200 100, -100 100, 0 0" stroke="rgba(236,30,99,0.15)" strokeWidth="1.5" fill="none" strokeDasharray="1500" strokeDashoffset="1500" />
-        <path className="inf-dots" d="M 0 0 C 100 -100, 200 -100, 200 0 C 200 100, 100 100, 0 0 C -100 -100, -200 -100, -200 0 C -200 100, -100 100, 0 0" stroke="#ec1e63" strokeWidth="2" fill="none" strokeDasharray="4 40" opacity="0" />
+        <path className="inf-dots" d="M 0 0 C 100 -100, 200 -100, 200 0 C 200 100, 100 100, 0 0 C -100 -100, -200 -100, -200 0 C -200 100, -100 100, 0 0" stroke="url(#inf-grad)" strokeWidth="2.5" fill="none" strokeDasharray="100 100" strokeLinecap="round" opacity="0" />
         
         {/* One Tap Shockwave */}
         <circle className="tap-wave" cx="0" cy="0" r="0" stroke="#ec1e63" strokeWidth="1.5" fill="none" opacity="0" />
