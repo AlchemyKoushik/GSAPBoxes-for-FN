@@ -5,44 +5,34 @@ import '../DigitalEcosystemAnimation/ecosystem.css';
 
 type Props = { autoplay?: boolean; loop?: boolean; reducedMotion?: boolean };
 
-// Sleek Cyber Data Table Graphic (NO ICONS)
-const TableShape = ({ id, className }: { id?: string; className: string }) => (
-  <g id={id} className={className} opacity="0">
+// Minimal, Clean Data Table Graphic (NO ICONS, ZERO CLUTTER)
+const CleanTable = ({ className }: { className: string }) => (
+  <g className={className} opacity="0">
     <rect
-      x="-48"
-      y="-24"
-      width="96"
-      height="48"
-      rx="8"
-      fill="rgba(23, 13, 21, 0.94)"
-      stroke="rgba(236, 30, 99, 0.38)"
+      x="-45"
+      y="-22"
+      width="90"
+      height="44"
+      rx="7"
+      fill="rgba(20, 11, 18, 0.92)"
+      stroke="rgba(236, 30, 99, 0.32)"
       strokeWidth="1.2"
     />
-    {/* Table Header Row */}
-    <rect x="-42" y="-18" width="84" height="10" rx="3" fill="rgba(236, 30, 99, 0.16)" />
-    <path d="M -36 -13 H -10" stroke="#ff5b93" strokeWidth="2" strokeLinecap="round" />
-    <path d="M 0 -13 H 18" stroke="rgba(255, 255, 255, 0.3)" strokeWidth="1.5" strokeLinecap="round" />
-    <circle cx="34" cy="-13" r="2.8" fill="#37d9a0" />
+    {/* Table Header: subtle accent pill & single status dot */}
+    <rect x="-35" y="-14" width="34" height="5" rx="2.5" fill="#ff5b93" opacity="0.85" />
+    <circle cx="33" cy="-11.5" r="2.5" fill="#37d9a0" />
 
-    {/* Table Data Rows */}
-    <path d="M -36 -2 H -5" stroke="rgba(255, 255, 255, 0.28)" strokeWidth="1.6" strokeLinecap="round" />
-    <path d="M 6 -2 H 24" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.4" strokeLinecap="round" />
-    <circle cx="34" cy="-2" r="2" fill="rgba(255, 255, 255, 0.35)" />
-
-    <path d="M -36 7 H -12" stroke="rgba(255, 255, 255, 0.22)" strokeWidth="1.6" strokeLinecap="round" />
-    <path d="M 2 7 H 28" stroke="rgba(255, 255, 255, 0.15)" strokeWidth="1.4" strokeLinecap="round" />
-    <circle cx="34" cy="7" r="2" fill="rgba(236, 30, 99, 0.6)" />
-
-    <path d="M -36 16 H 4" stroke="rgba(255, 255, 255, 0.16)" strokeWidth="1.4" strokeLinecap="round" />
-    <path d="M 14 16 H 26" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1.2" strokeLinecap="round" />
+    {/* Table Rows: 2 clean, spacious horizontal stripes */}
+    <path d="M -35 -1 H 16" stroke="rgba(255, 255, 255, 0.22)" strokeWidth="2" strokeLinecap="round" />
+    <path d="M -35 8 H 6" stroke="rgba(255, 255, 255, 0.14)" strokeWidth="2" strokeLinecap="round" />
   </g>
 );
 
-// 2 Line Charts Graphic (NO ICONS)
-const DualLineCharts = ({
+// Clean Dual Line Charts Graphic (NO NOISY GRID, NO SCATTERED DOTS)
+const CleanDualLineCharts = ({
   className,
-  width = 240,
-  height = 110,
+  width = 200,
+  height = 90,
 }: {
   className: string;
   width?: number;
@@ -52,65 +42,51 @@ const DualLineCharts = ({
   const hh = height / 2;
   return (
     <g className={className}>
-      {/* Background Grid Lines */}
-      <g stroke="rgba(255, 255, 255, 0.07)" strokeWidth="1">
-        <line x1={-hw} y1={-hh * 0.5} x2={hw} y2={-hh * 0.5} strokeDasharray="3 4" />
-        <line x1={-hw} y1={0} x2={hw} y2={0} strokeDasharray="3 4" />
-        <line x1={-hw} y1={hh * 0.5} x2={hw} y2={hh * 0.5} strokeDasharray="3 4" />
-        <line x1={-hw * 0.5} y1={-hh} x2={-hw * 0.5} y2={hh} strokeDasharray="3 4" />
-        <line x1={0} y1={-hh} x2={0} y2={hh} strokeDasharray="3 4" />
-        <line x1={hw * 0.5} y1={-hh} x2={hw * 0.5} y2={hh} strokeDasharray="3 4" />
-      </g>
+      {/* Soft Reference Base & Faint Guide */}
+      <line x1={-hw} y1={hh} x2={hw} y2={hh} stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1" />
+      <line x1={-hw} y1={0} x2={hw} y2={0} stroke="rgba(255, 255, 255, 0.04)" strokeDasharray="4 4" strokeWidth="1" />
+      <line x1={-hw} y1={-hh * 0.5} x2={hw} y2={-hh * 0.5} stroke="rgba(255, 255, 255, 0.04)" strokeDasharray="4 4" strokeWidth="1" />
 
-      {/* Axis Base */}
-      <line x1={-hw} y1={hh} x2={hw} y2={hh} stroke="rgba(255, 255, 255, 0.14)" strokeWidth="1.2" />
-
-      {/* Line Chart 1: Primary Trending Pink */}
+      {/* Primary Trend Line: Pink Glow */}
       <path
         className="chart-line-pink"
-        d={`M ${-hw} ${hh * 0.7} C ${-hw * 0.65} ${hh * 0.3}, ${-hw * 0.45} ${hh * 0.5}, ${-hw * 0.2} ${-hh * 0.15} C ${0} ${-hh * 0.65}, ${hw * 0.25} ${-hh * 0.15}, ${hw * 0.5} ${-hh * 0.45} C ${hw * 0.75} ${-hh * 0.75}, ${hw * 0.9} ${-hh * 0.6}, ${hw} ${-hh * 0.85}`}
+        d={`M ${-hw} ${hh * 0.65} C ${-hw * 0.6} ${hh * 0.2}, ${-hw * 0.35} ${hh * 0.45}, ${-hw * 0.1} ${-hh * 0.1} C ${hw * 0.15} ${-hh * 0.6}, ${hw * 0.45} ${-hh * 0.25}, ${hw * 0.75} ${-hh * 0.65} L ${hw} ${-hh * 0.8}`}
         fill="none"
         stroke="#ff5b93"
-        strokeWidth="2.6"
+        strokeWidth="2.4"
         strokeLinecap="round"
       />
 
-      {/* Line Chart 2: Complementary Purple */}
+      {/* Secondary Trend Line: Purple */}
       <path
         className="chart-line-purple"
-        d={`M ${-hw} ${hh * 0.85} C ${-hw * 0.7} ${hh * 0.7}, ${-hw * 0.4} ${hh * 0.75}, ${-hw * 0.15} ${hh * 0.4} C ${hw * 0.1} ${hh * 0.05}, ${hw * 0.35} ${hh * 0.45}, ${hw * 0.6} ${hh * 0.1} C ${hw * 0.8} ${-hh * 0.2}, ${hw * 0.92} ${-hh * 0.05}, ${hw} ${-hh * 0.35}`}
+        d={`M ${-hw} ${hh * 0.8} C ${-hw * 0.65} ${hh * 0.6}, ${-hw * 0.35} ${hh * 0.7}, ${-hw * 0.05} ${hh * 0.35} C ${hw * 0.2} ${hh * 0.1}, ${hw * 0.55} ${hh * 0.35}, ${hw * 0.8} ${-hh * 0.1} L ${hw} ${-hh * 0.3}`}
         fill="none"
         stroke="#9a6bff"
-        strokeWidth="2.2"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        opacity="0.9"
+        opacity="0.85"
       />
-
-      {/* Peak Data Accent Points */}
-      <circle cx={-hw * 0.2} cy={-hh * 0.15} r="3" fill="#ff5b93" className="chart-dot" />
-      <circle cx={0} cy={-hh * 0.65} r="3.5" fill="#37d9a0" className="chart-dot" />
-      <circle cx={hw * 0.5} cy={-hh * 0.45} r="3" fill="#ff5b93" className="chart-dot" />
-      <circle cx={hw} cy={-hh * 0.85} r="3.5" fill="#ffd24a" className="chart-dot" />
     </g>
   );
 };
 
-// Sleek Donut Chart Graphic (NO ICONS)
-const DonutChart = ({
+// Clean Donut Chart Graphic (NO CLUTTER, NO INNER DASHES)
+const CleanDonutChart = ({
   className,
-  radius = 44,
-  strokeWidth = 13,
+  radius = 42,
+  strokeWidth = 11,
 }: {
   className: string;
   radius?: number;
   strokeWidth?: number;
 }) => {
-  const c = 2 * Math.PI * radius; // approx circumference
+  const c = 2 * Math.PI * radius;
   return (
     <g className={className}>
       {/* Background Track */}
-      <circle cx="0" cy="0" r={radius} fill="none" stroke="rgba(255, 255, 255, 0.07)" strokeWidth={strokeWidth} />
-      {/* Segment 1: Deep Pink (40%) */}
+      <circle cx="0" cy="0" r={radius} fill="none" stroke="rgba(255, 255, 255, 0.06)" strokeWidth={strokeWidth} />
+      {/* Segment 1: Deep FlowNex Pink (50%) */}
       <circle
         className="donut-seg-1"
         cx="0"
@@ -119,11 +95,11 @@ const DonutChart = ({
         fill="none"
         stroke="#ec1e63"
         strokeWidth={strokeWidth}
-        strokeDasharray={`${c * 0.38} ${c * 0.62}`}
+        strokeDasharray={`${c * 0.5} ${c * 0.5}`}
         strokeDashoffset="0"
         transform="rotate(-90)"
       />
-      {/* Segment 2: Bright Rose (26%) */}
+      {/* Segment 2: Bright Rose (30%) */}
       <circle
         className="donut-seg-2"
         cx="0"
@@ -132,8 +108,8 @@ const DonutChart = ({
         fill="none"
         stroke="#ff5b93"
         strokeWidth={strokeWidth}
-        strokeDasharray={`${c * 0.26} ${c * 0.74}`}
-        strokeDashoffset={-c * 0.38}
+        strokeDasharray={`${c * 0.3} ${c * 0.7}`}
+        strokeDashoffset={-c * 0.5}
         transform="rotate(-90)"
       />
       {/* Segment 3: Vibrant Purple (20%) */}
@@ -146,27 +122,12 @@ const DonutChart = ({
         stroke="#9a6bff"
         strokeWidth={strokeWidth}
         strokeDasharray={`${c * 0.2} ${c * 0.8}`}
-        strokeDashoffset={-c * 0.64}
+        strokeDashoffset={-c * 0.8}
         transform="rotate(-90)"
       />
-      {/* Segment 4: Mint Highlight (14%) */}
-      <circle
-        className="donut-seg-4"
-        cx="0"
-        cy="0"
-        r={radius}
-        fill="none"
-        stroke="#37d9a0"
-        strokeWidth={strokeWidth}
-        strokeDasharray={`${c * 0.14} ${c * 0.86}`}
-        strokeDashoffset={-c * 0.84}
-        transform="rotate(-90)"
-      />
-      {/* Inner Cutout Hole */}
-      <circle cx="0" cy="0" r={radius - strokeWidth / 2 - 4} fill="#140b12" />
-      {/* Central Cyber Ring */}
-      <circle cx="0" cy="0" r={radius - strokeWidth / 2 - 10} fill="none" stroke="rgba(255, 255, 255, 0.15)" strokeWidth="1" strokeDasharray="3 3" />
-      <circle cx="0" cy="0" r="3" fill="#ff5b93" />
+      {/* Center Hole: clean and dark */}
+      <circle cx="0" cy="0" r={radius - strokeWidth / 2 - 3} fill="#140b12" />
+      <circle cx="0" cy="0" r={2.5} fill="#ff5b93" opacity="0.8" />
     </g>
   );
 };
@@ -189,310 +150,287 @@ export const ReportingBIAnimation = ({
         repeat: loop && !isReduced ? -1 : 0,
       });
 
-      // === INITIAL STATES ===
-      tl.set(q('.bi-scene-1, .bi-scene-2, .bi-scene-3'), { opacity: 0 });
-      tl.set(q('.bi-s1-shell, .bi-s2-screen, .bi-s3-dash-shell'), {
-        strokeDasharray: 1200,
-        strokeDashoffset: 1200,
-        opacity: 0,
-      });
-      tl.set(q('.chart-line-pink, .chart-line-purple'), {
-        strokeDasharray: 500,
-        strokeDashoffset: 500,
-      });
-      tl.set(q('.chart-dot'), { scale: 0, opacity: 0, transformOrigin: 'center' });
-      tl.set(q('.donut-seg-1, .donut-seg-2, .donut-seg-3, .donut-seg-4'), {
-        opacity: 0,
-        scale: 0.8,
-        transformOrigin: 'center',
-      });
-      tl.set(q('.bi-s2-tunnel, .bi-s2-tunnel-rib'), { opacity: 0 });
-      tl.set(q('.bi-s2-tunnel-rail'), { strokeDasharray: 400, strokeDashoffset: 400 });
-      tl.set(q('.bi-s2-table-1, .bi-s2-table-2, .bi-s2-table-3'), {
-        opacity: 0,
-        scale: 0.9,
-      });
-      tl.set(q('.bi-s2-dash-group'), { opacity: 0, scale: 0.85, transformOrigin: 'center' });
-      tl.set(q('.bi-s3-table-1, .bi-s3-table-2, .bi-s3-table-3'), {
-        opacity: 0,
-        scale: 0.85,
-      });
-      tl.set(q('.bi-s3-string'), { strokeDasharray: 400, strokeDashoffset: 400, opacity: 0 });
-      tl.set(q('.bi-s3-glow-left, .bi-s3-glow-right'), {
-        strokeDasharray: '28 320',
-        strokeDashoffset: 0,
-        opacity: 0,
-      });
-      tl.set(q('.bi-core'), { opacity: 0, scale: 0.5 });
-      tl.set(q('.bi-core-wave'), { attr: { r: 0 }, opacity: 0 });
+      // Reset utility
+      const setInitialStates = (targetTime?: number) => {
+        const at = targetTime !== undefined ? targetTime : 0;
+        tl.set(q('.bi-scene-1, .bi-scene-2, .bi-scene-3'), { opacity: 0 }, at);
+        tl.set(q('.bi-s1-card, .bi-s2-screen, .bi-s3-dash-card'), {
+          strokeDasharray: 1000,
+          strokeDashoffset: 1000,
+          opacity: 0,
+          filter: 'none',
+        }, at);
+        tl.set(q('.chart-line-pink, .chart-line-purple'), {
+          strokeDasharray: 450,
+          strokeDashoffset: 450,
+        }, at);
+        tl.set(q('.donut-seg-1, .donut-seg-2, .donut-seg-3'), {
+          opacity: 0,
+          scale: 0.85,
+          transformOrigin: 'center',
+        }, at);
+        tl.set(q('.bi-s2-tunnel, .bi-s2-tunnel-ring'), { opacity: 0 }, at);
+        tl.set(q('.bi-s2-tunnel-rail'), { strokeDasharray: 350, strokeDashoffset: 350 }, at);
+        tl.set(q('.bi-s2-table-1, .bi-s2-table-2, .bi-s2-table-3'), {
+          opacity: 0,
+          scale: 0.9,
+          filter: 'none',
+        }, at);
+        tl.set(q('.bi-s2-dash-group'), { opacity: 0, scale: 0.88, transformOrigin: 'center' }, at);
+        tl.set(q('.bi-s3-table-1, .bi-s3-table-2, .bi-s3-table-3'), {
+          opacity: 0,
+          scale: 0.9,
+          filter: 'none',
+        }, at);
+        tl.set(q('.bi-s3-string'), { strokeDasharray: 350, strokeDashoffset: 350, opacity: 0 }, at);
+        tl.set(q('.bi-s3-glow-left, .bi-s3-glow-right'), {
+          strokeDasharray: '32 300',
+          strokeDashoffset: 0,
+          opacity: 0,
+        }, at);
+        tl.set(q('.bi-core'), { opacity: 0, scale: 0.5 }, at);
+        tl.set(q('.bi-core-wave'), { attr: { r: 0 }, opacity: 0 }, at);
+      };
+
+      setInitialStates();
 
       if (isReduced) {
-        // Reduced motion: show clean static Command Center
         tl.set(q('.bi-scene-3'), { opacity: 1 });
-        tl.set(q('.bi-s3-dash-shell'), { strokeDashoffset: 0, opacity: 0.5 });
+        tl.set(q('.bi-s3-dash-card'), { strokeDashoffset: 0, opacity: 0.5 });
         tl.set(q('.bi-s3-table-1, .bi-s3-table-2, .bi-s3-table-3'), { opacity: 1, scale: 1 });
         tl.set(q('.bi-s3-string'), { strokeDashoffset: 0, opacity: 0.35 });
         tl.set(q('.bi-core'), { opacity: 1, scale: 1 });
         tl.set(q('.chart-line-pink, .chart-line-purple'), { strokeDashoffset: 0 });
-        tl.set(q('.donut-seg-1, .donut-seg-2, .donut-seg-3, .donut-seg-4'), { opacity: 1, scale: 1 });
+        tl.set(q('.donut-seg-1, .donut-seg-2, .donut-seg-3'), { opacity: 1, scale: 1 });
       } else {
         // =====================================================================
-        // SCENE 01: DASHBOARD & DONUT CHART SIDE BY SIDE (NO ICONS) [0s - 5.5s]
+        // SCENE 01: CLEAN DASHBOARD & DONUT CHART SIDE BY SIDE (NO ICONS)
         // =====================================================================
-        tl.to(q('.bi-scene-1'), { opacity: 1, duration: 0.5 }, 0);
+        tl.to(q('.bi-scene-1'), { opacity: 1, duration: 0.4 }, 0);
         tl.to(
-          q('.bi-s1-shell'),
-          { strokeDashoffset: 0, opacity: 0.55, duration: 1.1, ease: 'power2.inOut' },
-          0.15
+          q('.bi-s1-card'),
+          { strokeDashoffset: 0, opacity: 0.5, duration: 1.0, ease: 'power2.inOut' },
+          0.1
         );
 
-        // Draw 2 Line Charts in Dashboard
+        // Draw Line Charts smoothly
         tl.to(
           q('.bi-s1-charts .chart-line-pink'),
-          { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut' },
-          0.6
+          { strokeDashoffset: 0, duration: 1.25, ease: 'power2.inOut' },
+          0.5
         );
         tl.to(
           q('.bi-s1-charts .chart-line-purple'),
-          { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut' },
+          { strokeDashoffset: 0, duration: 1.25, ease: 'power2.inOut' },
+          0.65
+        );
+
+        // Form Donut Chart Segments cleanly
+        tl.to(
+          q('.bi-s1-donut .donut-seg-1, .bi-s1-donut .donut-seg-2, .bi-s1-donut .donut-seg-3'),
+          { opacity: 1, scale: 1, duration: 0.8, stagger: 0.1, ease: 'back.out(1.3)' },
           0.75
         );
-        tl.to(
-          q('.bi-s1-charts .chart-dot'),
-          { scale: 1, opacity: 1, duration: 0.4, stagger: 0.08, ease: 'back.out(2)' },
-          1.4
-        );
 
-        // Animate Donut Chart Segments
-        tl.to(
-          q('.bi-s1-donut .donut-seg-1, .bi-s1-donut .donut-seg-2, .bi-s1-donut .donut-seg-3, .bi-s1-donut .donut-seg-4'),
-          { opacity: 1, scale: 1, duration: 0.9, stagger: 0.1, ease: 'back.out(1.4)' },
-          0.85
-        );
-
-        // Subtle living pulse
+        // Subtle elegant glow on pink line
         tl.to(
           q('.bi-s1-charts .chart-line-pink'),
-          { filter: 'drop-shadow(0 0 8px rgba(255,91,147,0.7))', duration: 0.8, yoyo: true, repeat: 1 },
-          2.6
+          { filter: 'drop-shadow(0 0 6px rgba(255,91,147,0.6))', duration: 0.8, yoyo: true, repeat: 1 },
+          2.3
         );
 
-        // Scene 1 Exit
+        // Scene 1 Exit: clean fade out
         tl.to(
-          q('.bi-s1-shell, .bi-s1-charts, .bi-s1-donut'),
-          { opacity: 0, scale: 0.92, duration: 0.6, ease: 'power2.in' },
-          4.7
+          q('.bi-s1-card, .bi-s1-charts, .bi-s1-donut'),
+          { opacity: 0, scale: 0.94, duration: 0.5, ease: 'power2.in' },
+          4.5
         );
-        tl.to(q('.bi-scene-1'), { opacity: 0, duration: 0.4 }, 5.2);
+        tl.to(q('.bi-scene-1'), { opacity: 0, duration: 0.35 }, 4.9);
 
         // =====================================================================
-        // SCENE 02: 3 TABLES PASS THROUGH TUNNEL -> DASHBOARD (NO ICONS) [5.4s - 12.2s]
+        // SCENE 02: 3 TABLES PASS THROUGH TUNNEL -> DASHBOARD (NO ICONS)
         // =====================================================================
-        const t2 = 5.4;
+        const t2 = 5.1;
         tl.to(q('.bi-scene-2'), { opacity: 1, duration: 0.4 }, t2);
         tl.to(
           q('.bi-s2-screen'),
-          { strokeDashoffset: 0, opacity: 0.48, duration: 1.0, ease: 'power2.inOut' },
+          { strokeDashoffset: 0, opacity: 0.45, duration: 0.9, ease: 'power2.inOut' },
           t2 + 0.1
         );
 
-        // Reveal Cyber Tunnel
-        tl.to(q('.bi-s2-tunnel'), { opacity: 1, duration: 0.4 }, t2 + 0.3);
+        // Reveal Clean Cyber Tunnel
+        tl.to(q('.bi-s2-tunnel'), { opacity: 1, duration: 0.35 }, t2 + 0.25);
         tl.to(
           q('.bi-s2-tunnel-rail'),
-          { strokeDashoffset: 0, duration: 0.85, stagger: 0.1, ease: 'power2.out' },
-          t2 + 0.35
+          { strokeDashoffset: 0, duration: 0.8, ease: 'power2.out' },
+          t2 + 0.3
         );
         tl.to(
-          q('.bi-s2-tunnel-rib'),
-          { opacity: 0.6, duration: 0.6, stagger: 0.08, ease: 'power2.out' },
-          t2 + 0.45
+          q('.bi-s2-tunnel-ring'),
+          { opacity: 0.5, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
+          t2 + 0.4
         );
 
-        // Reveal 3 Tables on Left of Screen
-        tl.set(q('.bi-s2-table-1'), { x: -185, y: -64, opacity: 1, scale: 1 }, t2 + 0.35);
-        tl.set(q('.bi-s2-table-2'), { x: -185, y: 0, opacity: 1, scale: 1 }, t2 + 0.5);
-        tl.set(q('.bi-s2-table-3'), { x: -185, y: 64, opacity: 1, scale: 1 }, t2 + 0.65);
+        // 3 Tables enter on the left
+        tl.set(q('.bi-s2-table-1'), { x: -175, y: -56, opacity: 1, scale: 1 }, t2 + 0.3);
+        tl.set(q('.bi-s2-table-2'), { x: -175, y: 0, opacity: 1, scale: 1 }, t2 + 0.45);
+        tl.set(q('.bi-s2-table-3'), { x: -175, y: 56, opacity: 1, scale: 1 }, t2 + 0.6);
 
-        // Tables Pass Through the Tunnel
+        // Glide smoothly through the tunnel
         tl.to(
           q('.bi-s2-table-1'),
-          { x: 10, y: -8, scale: 0.72, duration: 1.25, ease: 'power2.inOut' },
-          t2 + 1.05
+          { x: 10, y: -6, scale: 0.75, duration: 1.2, ease: 'power2.inOut' },
+          t2 + 1.0
         );
         tl.to(
           q('.bi-s2-table-2'),
-          { x: 10, y: 0, scale: 0.72, duration: 1.25, ease: 'power2.inOut' },
-          t2 + 1.2
+          { x: 10, y: 0, scale: 0.75, duration: 1.2, ease: 'power2.inOut' },
+          t2 + 1.15
         );
         tl.to(
           q('.bi-s2-table-3'),
-          { x: 10, y: 8, scale: 0.72, duration: 1.25, ease: 'power2.inOut' },
-          t2 + 1.35
+          { x: 10, y: 6, scale: 0.75, duration: 1.2, ease: 'power2.inOut' },
+          t2 + 1.3
         );
 
-        // Transformation: Tables dissolve as they pass through tunnel throat
+        // Dissolve tables at tunnel exit
         tl.to(
           q('.bi-s2-table-1, .bi-s2-table-2, .bi-s2-table-3'),
-          { opacity: 0, scale: 0.45, duration: 0.4, stagger: 0.08, ease: 'power2.in' },
-          t2 + 2.5
+          { opacity: 0, scale: 0.5, duration: 0.35, stagger: 0.06, ease: 'power2.in' },
+          t2 + 2.35
         );
 
-        // Tunnel pulse flash at transformation
+        // Tunnel pulse
         tl.to(
-          q('.bi-s2-tunnel-rib'),
-          { stroke: '#37d9a0', opacity: 1, duration: 0.25, yoyo: true, repeat: 1 },
-          t2 + 2.6
+          q('.bi-s2-tunnel-ring'),
+          { stroke: '#37d9a0', opacity: 0.9, duration: 0.25, yoyo: true, repeat: 1 },
+          t2 + 2.45
         );
 
-        // Morph / Resolve into Dashboard with 2 Line Charts + Donut Chart (NO ICONS)
+        // Emerges into Dashboard: 2 Line Charts and Donut Chart (NO ICONS)
         tl.to(
           q('.bi-s2-dash-group'),
-          { opacity: 1, scale: 1, duration: 0.65, ease: 'back.out(1.3)' },
-          t2 + 2.85
+          { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.25)' },
+          t2 + 2.7
         );
         tl.to(
           q('.bi-s2-dash-group .chart-line-pink'),
-          { strokeDashoffset: 0, duration: 1.15, ease: 'power2.inOut' },
-          t2 + 2.95
+          { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' },
+          t2 + 2.8
         );
         tl.to(
           q('.bi-s2-dash-group .chart-line-purple'),
-          { strokeDashoffset: 0, duration: 1.15, ease: 'power2.inOut' },
-          t2 + 3.1
+          { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' },
+          t2 + 2.95
         );
         tl.to(
-          q('.bi-s2-dash-group .chart-dot'),
-          { scale: 1, opacity: 1, duration: 0.35, stagger: 0.07, ease: 'back.out(2)' },
-          t2 + 3.65
-        );
-        tl.to(
-          q('.bi-s2-dash-group .donut-seg-1, .bi-s2-dash-group .donut-seg-2, .bi-s2-dash-group .donut-seg-3, .bi-s2-dash-group .donut-seg-4'),
-          { opacity: 1, scale: 1, duration: 0.8, stagger: 0.08, ease: 'back.out(1.3)' },
-          t2 + 3.2
+          q('.bi-s2-dash-group .donut-seg-1, .bi-s2-dash-group .donut-seg-2, .bi-s2-dash-group .donut-seg-3'),
+          { opacity: 1, scale: 1, duration: 0.75, stagger: 0.08, ease: 'back.out(1.25)' },
+          t2 + 3.05
         );
 
         // Scene 2 Exit
         tl.to(
           q('.bi-s2-screen, .bi-s2-tunnel, .bi-s2-dash-group'),
-          { opacity: 0, scale: 0.9, duration: 0.6, ease: 'power2.in' },
-          11.6
+          { opacity: 0, scale: 0.94, duration: 0.5, ease: 'power2.in' },
+          11.2
         );
-        tl.to(q('.bi-scene-2'), { opacity: 0, duration: 0.4 }, 12.0);
+        tl.to(q('.bi-scene-2'), { opacity: 0, duration: 0.35 }, 11.6);
 
         // =====================================================================
-        // SCENE 03: COMMAND CENTER (TABLES -> FLOWNEX CORE -> DASHBOARD) [12.2s - 21.5s]
+        // SCENE 03: CLEAN COMMAND CENTER (TABLES -> GLITCH BLOCK -> DASHBOARD)
         // =====================================================================
-        const t3 = 12.2;
-        tl.to(q('.bi-scene-3'), { opacity: 1, duration: 0.45 }, t3);
+        const t3 = 11.8;
+        tl.to(q('.bi-scene-3'), { opacity: 1, duration: 0.4 }, t3);
 
-        // Reveal Left Tables
-        tl.set(q('.bi-s3-table-1'), { x: -190, y: -64, opacity: 1, scale: 1 }, t3 + 0.15);
-        tl.set(q('.bi-s3-table-2'), { x: -190, y: 0, opacity: 1, scale: 1 }, t3 + 0.3);
-        tl.set(q('.bi-s3-table-3'), { x: -190, y: 64, opacity: 1, scale: 1 }, t3 + 0.45);
+        // Reveal Left Tables with generous spacing
+        tl.set(q('.bi-s3-table-1'), { x: -185, y: -58, opacity: 1, scale: 1 }, t3 + 0.1);
+        tl.set(q('.bi-s3-table-2'), { x: -185, y: 0, opacity: 1, scale: 1 }, t3 + 0.22);
+        tl.set(q('.bi-s3-table-3'), { x: -185, y: 58, opacity: 1, scale: 1 }, t3 + 0.34);
 
         // Reveal FlowNex Glitch Block in Middle
         tl.to(
           q('.bi-core'),
-          { opacity: 1, scale: 1, duration: 0.65, ease: 'back.out(1.35)' },
-          t3 + 0.4
+          { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.3)' },
+          t3 + 0.3
         );
 
         // Reveal Right Dashboard Shell
         tl.to(
-          q('.bi-s3-dash-shell'),
-          { strokeDashoffset: 0, opacity: 0.5, duration: 0.9, ease: 'power2.inOut' },
+          q('.bi-s3-dash-card'),
+          { strokeDashoffset: 0, opacity: 0.45, duration: 0.8, ease: 'power2.inOut' },
           t3 + 0.35
         );
 
-        // Reveal Connection Strings
+        // Reveal Thin Elegant Connection Strings
         tl.to(
           q('.bi-s3-string'),
-          { strokeDashoffset: 0, opacity: 0.32, duration: 0.8, stagger: 0.08, ease: 'power2.out' },
-          t3 + 0.5
+          { strokeDashoffset: 0, opacity: 0.3, duration: 0.7, stagger: 0.06, ease: 'power2.out' },
+          t3 + 0.45
         );
 
-        // Glow of Pink Lights passes through Left Strings from Tables to FlowNex Block
-        tl.set(q('.bi-s3-glow-left'), { strokeDashoffset: 0, opacity: 1 }, t3 + 1.2);
+        // Glow of Pink Lights passes through Strings from Tables to FlowNex Block
+        tl.set(q('.bi-s3-glow-left'), { strokeDashoffset: 0, opacity: 1 }, t3 + 1.1);
         tl.to(
           q('.bi-s3-glow-left'),
-          { strokeDashoffset: -260, duration: 1.4, stagger: 0.1, ease: 'power1.inOut' },
+          { strokeDashoffset: -240, duration: 1.3, stagger: 0.08, ease: 'power1.inOut' },
+          t3 + 1.1
+        );
+
+        // Subtle soft highlight on tables
+        tl.to(
+          q('.bi-s3-table-1, .bi-s3-table-2, .bi-s3-table-3'),
+          { filter: 'drop-shadow(0 0 8px rgba(255,91,147,0.5))', duration: 0.35, yoyo: true, repeat: 1 },
           t3 + 1.2
         );
 
-        // Tables pulse as data is sent
-        tl.to(
-          q('.bi-s3-table-1, .bi-s3-table-2, .bi-s3-table-3'),
-          { filter: 'drop-shadow(0 0 12px rgba(255,91,147,0.7))', duration: 0.4, yoyo: true, repeat: 1 },
-          t3 + 1.3
-        );
-
-        // Energy reaches FlowNex Block: Core Shockwave Burst & Scale Pulse
-        tl.set(q('.bi-core-wave'), { attr: { r: 0 }, opacity: 1 }, t3 + 2.6);
+        // Energy reaches FlowNex Block: Clean Circular Shockwave Burst & Scale Pulse
+        tl.set(q('.bi-core-wave'), { attr: { r: 0 }, opacity: 0.9 }, t3 + 2.4);
         tl.to(
           q('.bi-core-wave'),
-          { attr: { r: 80 }, opacity: 0, duration: 0.85, ease: 'power2.out' },
-          t3 + 2.6
+          { attr: { r: 70 }, opacity: 0, duration: 0.75, ease: 'power2.out' },
+          t3 + 2.4
         );
         tl.to(
           q('.bi-core'),
-          { scale: 1.08, duration: 0.2, yoyo: true, repeat: 1, ease: 'power2.out' },
-          t3 + 2.6
+          { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: 'power2.out' },
+          t3 + 2.4
         );
 
         // Glow of Pink Lights travels from FlowNex Block to Dashboard
-        tl.set(q('.bi-s3-glow-right'), { strokeDashoffset: 0, opacity: 1 }, t3 + 2.85);
+        tl.set(q('.bi-s3-glow-right'), { strokeDashoffset: 0, opacity: 1 }, t3 + 2.65);
         tl.to(
           q('.bi-s3-glow-right'),
-          { strokeDashoffset: -260, duration: 1.35, stagger: 0.09, ease: 'power1.inOut' },
-          t3 + 2.85
+          { strokeDashoffset: -240, duration: 1.25, stagger: 0.07, ease: 'power1.inOut' },
+          t3 + 2.65
         );
 
-        // Glow reaches Dashboard: Charts Ignite!
+        // Glow reaches Dashboard: Charts illuminate with clarity!
         tl.to(
-          q('.bi-s3-dash-shell'),
-          { filter: 'drop-shadow(0 0 16px rgba(255,91,147,0.5))', stroke: '#ff5b93', duration: 0.4 },
-          t3 + 4.1
+          q('.bi-s3-dash-card'),
+          { stroke: '#ff5b93', opacity: 0.7, duration: 0.35 },
+          t3 + 3.8
         );
         tl.to(
           q('.bi-s3-charts .chart-line-pink'),
-          { strokeDashoffset: 0, duration: 1.15, ease: 'power2.inOut' },
-          t3 + 4.15
+          { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' },
+          t3 + 3.85
         );
         tl.to(
           q('.bi-s3-charts .chart-line-purple'),
-          { strokeDashoffset: 0, duration: 1.15, ease: 'power2.inOut' },
-          t3 + 4.3
+          { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' },
+          t3 + 4.0
         );
         tl.to(
-          q('.bi-s3-charts .chart-dot'),
-          { scale: 1, opacity: 1, duration: 0.3, stagger: 0.06, ease: 'back.out(2)' },
-          t3 + 4.8
-        );
-        tl.to(
-          q('.bi-s3-donut .donut-seg-1, .bi-s3-donut .donut-seg-2, .bi-s3-donut .donut-seg-3, .bi-s3-donut .donut-seg-4'),
-          { opacity: 1, scale: 1, duration: 0.75, stagger: 0.08, ease: 'back.out(1.3)' },
-          t3 + 4.35
+          q('.bi-s3-donut .donut-seg-1, .bi-s3-donut .donut-seg-2, .bi-s3-donut .donut-seg-3'),
+          { opacity: 1, scale: 1, duration: 0.7, stagger: 0.08, ease: 'back.out(1.25)' },
+          t3 + 4.05
         );
 
-        // Final hold & smooth reset before loop
-        const reset = 21.0;
-        tl.to(q('.bi-scene-3, .bi-core'), { opacity: 0, duration: 0.5 }, reset - 0.5);
-
-        tl.set(q('.bi-scene-1, .bi-scene-2, .bi-scene-3'), { opacity: 0 }, reset);
-        tl.set(q('.bi-s1-shell, .bi-s2-screen, .bi-s3-dash-shell'), { strokeDashoffset: 1200, opacity: 0, filter: 'none', stroke: 'rgba(236,30,99,0.36)' }, reset);
-        tl.set(q('.chart-line-pink, .chart-line-purple'), { strokeDashoffset: 500 }, reset);
-        tl.set(q('.chart-dot'), { scale: 0, opacity: 0 }, reset);
-        tl.set(q('.donut-seg-1, .donut-seg-2, .donut-seg-3, .donut-seg-4'), { opacity: 0, scale: 0.8 }, reset);
-        tl.set(q('.bi-s2-tunnel, .bi-s2-tunnel-rib'), { opacity: 0 }, reset);
-        tl.set(q('.bi-s2-tunnel-rail'), { strokeDashoffset: 400 }, reset);
-        tl.set(q('.bi-s2-table-1, .bi-s2-table-2, .bi-s2-table-3'), { opacity: 0, scale: 0.9 }, reset);
-        tl.set(q('.bi-s2-dash-group'), { opacity: 0, scale: 0.85 }, reset);
-        tl.set(q('.bi-s3-table-1, .bi-s3-table-2, .bi-s3-table-3'), { opacity: 0, scale: 0.85, filter: 'none' }, reset);
-        tl.set(q('.bi-s3-string'), { strokeDashoffset: 400, opacity: 0 }, reset);
-        tl.set(q('.bi-s3-glow-left, .bi-s3-glow-right'), { strokeDashoffset: 0, opacity: 0 }, reset);
-        tl.set(q('.bi-core'), { opacity: 0, scale: 0.5 }, reset);
-        tl.set(q('.bi-core-wave'), { attr: { r: 0 }, opacity: 0 }, reset);
+        // Final hold and clean loop reset
+        const reset = 20.0;
+        tl.to(q('.bi-scene-3, .bi-core'), { opacity: 0, duration: 0.45 }, reset - 0.45);
+        setInitialStates(reset);
       }
     }, containerRef);
 
@@ -515,226 +453,196 @@ export const ReportingBIAnimation = ({
         viewBox="-310 -150 620 300"
       >
         <defs>
-          <linearGradient id="biGlowBeam" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ec1e63" stopOpacity="0.8" />
-            <stop offset="50%" stopColor="#ff5b93" stopOpacity="1" />
-            <stop offset="100%" stopColor="#9a6bff" stopOpacity="0.8" />
-          </linearGradient>
-          <linearGradient id="tunnelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ec1e63" stopOpacity="0.12" />
-            <stop offset="50%" stopColor="#ff5b93" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#9a6bff" stopOpacity="0.12" />
+          <linearGradient id="cleanTunnelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ec1e63" stopOpacity="0.08" />
+            <stop offset="50%" stopColor="#ff5b93" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#ec1e63" stopOpacity="0.08" />
           </linearGradient>
         </defs>
 
         {/* ================================================================= */}
-        {/* SCENE 01: DASHBOARD & DONUT CHART SIDE BY SIDE (NO ICONS)         */}
+        {/* SCENE 01: DASHBOARD & DONUT CHART SIDE BY SIDE (CLEAN, NO ICONS)  */}
         {/* ================================================================= */}
         <g className="bi-scene-1">
-          {/* Dashboard Shell (Left Side) */}
+          {/* Dashboard Card (Left) */}
           <rect
-            className="bi-s1-shell"
-            x="-250"
-            y="-90"
-            width="280"
-            height="180"
+            className="bi-s1-card"
+            x="-235"
+            y="-80"
+            width="250"
+            height="160"
             rx="16"
-            fill="rgba(21, 12, 19, 0.9)"
-            stroke="rgba(236, 30, 99, 0.38)"
-            strokeWidth="1.4"
+            fill="rgba(20, 11, 18, 0.88)"
+            stroke="rgba(236, 30, 99, 0.35)"
+            strokeWidth="1.2"
           />
-          {/* Dashboard Header Bar */}
-          <g fill="none" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1">
-            <line x1="-230" y1="-62" x2="10" y2="-62" />
-            <path d="M -230 -72 H -160" stroke="#ff5b93" strokeWidth="2.5" strokeLinecap="round" />
-            <path d="M -145 -72 H -95" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="1.8" strokeLinecap="round" />
+          {/* Minimal Accent Header Line */}
+          <path d="M -215 -58 H -165" stroke="#ff5b93" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="-215" y1="-50" x2="-5" y2="-50" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
+
+          {/* 2 Line Charts */}
+          <g className="bi-s1-charts" transform="translate(-110 16)">
+            <CleanDualLineCharts className="bi-s1-line-charts-svg" width={200} height={80} />
           </g>
 
-          {/* 2 Line Charts inside Dashboard */}
-          <g className="bi-s1-charts" transform="translate(-110 12)">
-            <DualLineCharts className="bi-s1-line-charts-svg" width={220} height={95} />
-          </g>
-
-          {/* Donut Chart Shell (Right Side) */}
+          {/* Donut Chart Card (Right) */}
           <rect
-            className="bi-s1-shell"
-            x="50"
-            y="-90"
-            width="200"
-            height="180"
+            className="bi-s1-card"
+            x="40"
+            y="-80"
+            width="195"
+            height="160"
             rx="16"
-            fill="rgba(21, 12, 19, 0.9)"
-            stroke="rgba(236, 30, 99, 0.38)"
-            strokeWidth="1.4"
+            fill="rgba(20, 11, 18, 0.88)"
+            stroke="rgba(236, 30, 99, 0.35)"
+            strokeWidth="1.2"
           />
-          {/* Donut Header Bar */}
-          <g fill="none" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1">
-            <line x1="70" y1="-62" x2="230" y2="-62" />
-            <path d="M 70 -72 H 140" stroke="#ff5b93" strokeWidth="2.5" strokeLinecap="round" />
-          </g>
+          {/* Minimal Accent Header Line */}
+          <path d="M 60 -58 H 105" stroke="#ff5b93" strokeWidth="2.2" strokeLinecap="round" />
+          <line x1="60" y1="-50" x2="215" y2="-50" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
 
           {/* Donut Chart */}
-          <g className="bi-s1-donut" transform="translate(150 12)">
-            <DonutChart className="bi-s1-donut-svg" radius={42} strokeWidth={12} />
+          <g className="bi-s1-donut" transform="translate(138 12)">
+            <CleanDonutChart className="bi-s1-donut-svg" radius={40} strokeWidth={11} />
           </g>
         </g>
 
         {/* ================================================================= */}
-        {/* SCENE 02: 3 TABLES PASS THROUGH TUNNEL -> DASHBOARD (NO ICONS)    */}
+        {/* SCENE 02: 3 TABLES PASS THROUGH TUNNEL -> DASHBOARD (CLEAN)       */}
         {/* ================================================================= */}
         <g className="bi-scene-2">
-          {/* Main Terminal Screen Frame */}
+          {/* Terminal Screen Frame */}
           <rect
             className="bi-s2-screen"
-            x="-275"
-            y="-120"
-            width="550"
-            height="240"
-            rx="18"
-            fill="rgba(21, 12, 19, 0.92)"
-            stroke="rgba(236, 30, 99, 0.4)"
-            strokeWidth="1.4"
+            x="-260"
+            y="-110"
+            width="520"
+            height="220"
+            rx="16"
+            fill="rgba(20, 11, 18, 0.9)"
+            stroke="rgba(236, 30, 99, 0.35)"
+            strokeWidth="1.2"
           />
-          {/* Screen Header */}
-          <g fill="none" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1">
-            <line x1="-255" y1="-92" x2="255" y2="-92" />
-            <circle cx="-250" cy="-103" r="3" fill="#ff5b93" />
-            <circle cx="-240" cy="-103" r="3" fill="#ffd24a" />
-            <circle cx="-230" cy="-103" r="3" fill="#37d9a0" />
-            <path d="M -180 -103 H -100" stroke="rgba(255, 255, 255, 0.25)" strokeWidth="2" strokeLinecap="round" />
-          </g>
+          {/* Subtle Window Header */}
+          <line x1="-240" y1="-85" x2="240" y2="-85" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
+          <circle cx="-240" cy="-95" r="2.5" fill="#ff5b93" opacity="0.8" />
+          <path d="M -225 -95 H -170" stroke="rgba(255, 255, 255, 0.2)" strokeWidth="1.8" strokeLinecap="round" />
 
-          {/* High-Tech Cyber Tunnel */}
+          {/* Cyber Tunnel */}
           <g className="bi-s2-tunnel">
-            {/* Tunnel Ambient Glow Path */}
             <path
-              d="M -90 -75 C -45 -75, -15 -35, 10 -35 C 35 -35, 65 -75, 110 -75 L 110 75 C 65 75, 35 35, 10 35 C -15 35, -45 75, -90 75 Z"
-              fill="url(#tunnelGrad)"
+              d="M -85 -65 C -40 -65, -15 -28, 10 -28 C 35 -28, 60 -65, 95 -65 L 95 65 C 60 65, 35 28, 10 28 C -15 28, -40 65, -85 65 Z"
+              fill="url(#cleanTunnelGrad)"
             />
             {/* Guide Rails */}
             <path
               className="bi-s2-tunnel-rail"
-              d="M -100 -75 C -50 -75, -20 -35, 10 -35 C 40 -35, 70 -75, 120 -75"
+              d="M -95 -65 C -45 -65, -15 -28, 10 -28 C 35 -28, 65 -65, 105 -65"
               fill="none"
               stroke="#ff5b93"
-              strokeWidth="1.8"
+              strokeWidth="1.6"
               strokeLinecap="round"
             />
             <path
               className="bi-s2-tunnel-rail"
-              d="M -100 75 C -50 75, -20 35, 10 35 C 40 35, 70 75, 120 75"
+              d="M -95 65 C -45 65, -15 28, 10 28 C 35 28, 65 65, 105 65"
               fill="none"
               stroke="#ff5b93"
-              strokeWidth="1.8"
+              strokeWidth="1.6"
               strokeLinecap="round"
             />
-            {/* Concentric Tunnel Portals */}
-            <ellipse className="bi-s2-tunnel-rib" cx="-85" cy="0" rx="16" ry="68" fill="none" stroke="rgba(236, 30, 99, 0.45)" strokeWidth="1.4" />
-            <ellipse className="bi-s2-tunnel-rib" cx="-40" cy="0" rx="14" ry="48" fill="none" stroke="rgba(236, 30, 99, 0.55)" strokeWidth="1.4" />
-            <ellipse className="bi-s2-tunnel-rib" cx="10" cy="0" rx="12" ry="34" fill="none" stroke="#37d9a0" strokeWidth="1.6" />
-            <ellipse className="bi-s2-tunnel-rib" cx="60" cy="0" rx="14" ry="48" fill="none" stroke="rgba(236, 30, 99, 0.55)" strokeWidth="1.4" />
-            <ellipse className="bi-s2-tunnel-rib" cx="105" cy="0" rx="16" ry="68" fill="none" stroke="rgba(236, 30, 99, 0.45)" strokeWidth="1.4" />
+            {/* 3 Clean Portal Rings */}
+            <ellipse className="bi-s2-tunnel-ring" cx="-70" cy="0" rx="14" ry="54" fill="none" stroke="rgba(236, 30, 99, 0.4)" strokeWidth="1.2" />
+            <ellipse className="bi-s2-tunnel-ring" cx="10" cy="0" rx="10" ry="28" fill="none" stroke="#37d9a0" strokeWidth="1.5" />
+            <ellipse className="bi-s2-tunnel-ring" cx="80" cy="0" rx="14" ry="54" fill="none" stroke="rgba(236, 30, 99, 0.4)" strokeWidth="1.2" />
           </g>
 
-          {/* 3 Tables Travelling Through Tunnel */}
-          <TableShape id="s2-tab-1" className="bi-table bi-s2-table-1" />
-          <TableShape id="s2-tab-2" className="bi-table bi-s2-table-2" />
-          <TableShape id="s2-tab-3" className="bi-table bi-s2-table-3" />
+          {/* 3 Clean Tables */}
+          <CleanTable className="bi-s2-table-1" />
+          <CleanTable className="bi-s2-table-2" />
+          <CleanTable className="bi-s2-table-3" />
 
-          {/* Resulting Dashboard: 2 Line Charts and a Donut Chart (NO ICONS) */}
+          {/* Resulting Dashboard on Screen (2 Line Charts + Donut Chart) */}
           <g className="bi-s2-dash-group" transform="translate(0 6)">
-            {/* Dashboard Inner Shell */}
-            <rect
-              x="-245"
-              y="-75"
-              width="490"
-              height="150"
-              rx="12"
-              fill="rgba(19, 10, 17, 0.85)"
-              stroke="rgba(236, 30, 99, 0.35)"
-              strokeWidth="1.2"
-            />
-            {/* Left Portion: 2 Line Charts */}
-            <g transform="translate(-105 5)">
-              <DualLineCharts className="bi-s2-line-charts-svg" width={220} height={90} />
+            {/* Left Half: 2 Line Charts */}
+            <g transform="translate(-105 6)">
+              <CleanDualLineCharts className="bi-s2-line-charts-svg" width={200} height={85} />
             </g>
-            {/* Divider */}
-            <line x1="30" y1="-60" x2="30" y2="60" stroke="rgba(255, 255, 255, 0.1)" strokeWidth="1" strokeDasharray="3 3" />
-            {/* Right Portion: Donut Chart */}
-            <g transform="translate(145 0)">
-              <DonutChart className="bi-s2-donut-svg" radius={38} strokeWidth={11} />
+            {/* Subtle Divider */}
+            <line x1="30" y1="-50" x2="30" y2="50" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" strokeDasharray="3 3" />
+            {/* Right Half: Donut Chart */}
+            <g transform="translate(140 0)">
+              <CleanDonutChart className="bi-s2-donut-svg" radius={36} strokeWidth={10} />
             </g>
           </g>
         </g>
 
         {/* ================================================================= */}
-        {/* SCENE 03: COMMAND CENTER (TABLES -> FLOWNEX CORE -> DASHBOARD)    */}
+        {/* SCENE 03: CLEAN COMMAND CENTER (TABLES -> GLITCH BLOCK -> DASH)   */}
         {/* ================================================================= */}
         <g className="bi-scene-3">
-          {/* Connection Strings Base Lines */}
-          <g fill="none" stroke="rgba(236, 30, 99, 0.25)" strokeWidth="1.4">
+          {/* Subtle Connection Strings */}
+          <g fill="none" stroke="rgba(236, 30, 99, 0.2)" strokeWidth="1.2">
             {/* Left Strings: Tables -> Center */}
-            <path className="bi-s3-string" d="M -142 -64 C -85 -64, -60 -20, -42 -5" />
-            <path className="bi-s3-string" d="M -142 0 C -95 0, -70 0, -42 0" />
-            <path className="bi-s3-string" d="M -142 64 C -85 64, -60 20, -42 5" />
+            <path className="bi-s3-string" d="M -140 -58 C -85 -58, -60 -18, -42 -4" />
+            <path className="bi-s3-string" d="M -140 0 C -95 0, -70 0, -42 0" />
+            <path className="bi-s3-string" d="M -140 58 C -85 58, -60 18, -42 4" />
 
             {/* Right Strings: Center -> Dashboard */}
-            <path className="bi-s3-string" d="M 42 -5 C 60 -20, 75 -45, 85 -45" />
+            <path className="bi-s3-string" d="M 42 -4 C 60 -18, 75 -40, 85 -40" />
             <path className="bi-s3-string" d="M 42 0 C 60 0, 75 0, 85 0" />
-            <path className="bi-s3-string" d="M 42 5 C 60 20, 75 45, 85 45" />
+            <path className="bi-s3-string" d="M 42 4 C 60 18, 75 40, 85 40" />
           </g>
 
-          {/* Glow of Pink Lights Overlay Paths (Tables -> FlowNex Block) */}
-          <g fill="none" stroke="#ff5b93" strokeWidth="2.8" strokeLinecap="round" strokeDasharray="28 320">
-            <path className="bi-s3-glow-left" d="M -142 -64 C -85 -64, -60 -20, -42 -5" />
-            <path className="bi-s3-glow-left" d="M -142 0 C -95 0, -70 0, -42 0" />
-            <path className="bi-s3-glow-left" d="M -142 64 C -85 64, -60 20, -42 5" />
+          {/* Glow of Pink Lights (Tables -> FlowNex Block) */}
+          <g fill="none" stroke="#ff5b93" strokeWidth="2.4" strokeLinecap="round" strokeDasharray="32 300">
+            <path className="bi-s3-glow-left" d="M -140 -58 C -85 -58, -60 -18, -42 -4" />
+            <path className="bi-s3-glow-left" d="M -140 0 C -95 0, -70 0, -42 0" />
+            <path className="bi-s3-glow-left" d="M -140 58 C -85 58, -60 18, -42 4" />
           </g>
 
-          {/* Glow of Pink Lights Overlay Paths (FlowNex Block -> Dashboard) */}
-          <g fill="none" stroke="#ff5b93" strokeWidth="2.8" strokeLinecap="round" strokeDasharray="28 320">
-            <path className="bi-s3-glow-right" d="M 42 -5 C 60 -20, 75 -45, 85 -45" />
+          {/* Glow of Pink Lights (FlowNex Block -> Dashboard) */}
+          <g fill="none" stroke="#ff5b93" strokeWidth="2.4" strokeLinecap="round" strokeDasharray="32 300">
+            <path className="bi-s3-glow-right" d="M 42 -4 C 60 -18, 75 -40, 85 -40" />
             <path className="bi-s3-glow-right" d="M 42 0 C 60 0, 75 0, 85 0" />
-            <path className="bi-s3-glow-right" d="M 42 5 C 60 20, 75 45, 85 45" />
+            <path className="bi-s3-glow-right" d="M 42 4 C 60 18, 75 40, 85 40" />
           </g>
 
-          {/* Multiple Tables on Left Side */}
-          <TableShape className="bi-table bi-s3-table-1" />
-          <TableShape className="bi-table bi-s3-table-2" />
-          <TableShape className="bi-table bi-s3-table-3" />
+          {/* Multiple Tables on Left */}
+          <CleanTable className="bi-s3-table-1" />
+          <CleanTable className="bi-s3-table-2" />
+          <CleanTable className="bi-s3-table-3" />
 
           {/* Right Side: Command Center Dashboard with 2 Line Charts and Donut Chart */}
-          <g className="bi-s3-dash" transform="translate(182 0)">
+          <g className="bi-s3-dash" transform="translate(185 0)">
             <rect
-              className="bi-s3-dash-shell"
-              x="-97"
-              y="-85"
-              width="194"
-              height="170"
+              className="bi-s3-dash-card"
+              x="-98"
+              y="-82"
+              width="196"
+              height="164"
               rx="16"
-              fill="rgba(21, 12, 19, 0.9)"
-              stroke="rgba(236, 30, 99, 0.36)"
-              strokeWidth="1.4"
+              fill="rgba(20, 11, 18, 0.88)"
+              stroke="rgba(236, 30, 99, 0.35)"
+              strokeWidth="1.2"
             />
-            {/* Dashboard Header Bar */}
-            <g fill="none" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1">
-              <line x1="-80" y1="-60" x2="80" y2="-60" />
-              <path d="M -80 -70 H -30" stroke="#ff5b93" strokeWidth="2.2" strokeLinecap="round" />
-            </g>
+            {/* Clean Header Bar */}
+            <path d="M -80 -62 H -35" stroke="#ff5b93" strokeWidth="2" strokeLinecap="round" />
+            <line x1="-80" y1="-54" x2="80" y2="-54" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
 
-            {/* 2 Line Charts (Top Half) */}
+            {/* 2 Line Charts (Upper Section) */}
             <g className="bi-s3-charts" transform="translate(0 -16)">
-              <DualLineCharts className="bi-s3-line-charts-svg" width={160} height={60} />
+              <CleanDualLineCharts className="bi-s3-line-charts-svg" width={155} height={55} />
             </g>
 
-            {/* Donut Chart (Bottom Half) */}
-            <g className="bi-s3-donut" transform="translate(0 45)">
-              <DonutChart className="bi-s3-donut-svg" radius={26} strokeWidth={8} />
+            {/* Donut Chart (Lower Section) */}
+            <g className="bi-s3-donut" transform="translate(0 42)">
+              <CleanDonutChart className="bi-s3-donut-svg" radius={24} strokeWidth={7} />
             </g>
           </g>
 
-          {/* Core Energy Shockwave Wave */}
-          <circle className="bi-core-wave" cx="0" cy="0" r="0" stroke="#ff5b93" strokeWidth="2.5" fill="none" />
+          {/* Clean Core Shockwave Wave */}
+          <circle className="bi-core-wave" cx="0" cy="0" r="0" stroke="#ff5b93" strokeWidth="2" fill="none" />
         </g>
       </svg>
 
