@@ -300,33 +300,43 @@ export const ReportingBIAnimation = ({
           t2 + 2.35
         );
 
-        // Tunnel pulse
+        // Tunnel pulse as the tables finish passing through.
         tl.to(
           q('.bi-s2-tunnel-ring'),
           { stroke: '#37d9a0', opacity: 0.9, duration: 0.25, yoyo: true, repeat: 1 },
           t2 + 2.45
         );
 
-        // Emerges into Dashboard: 2 Line Charts and Donut Chart (NO ICONS)
+        // Clear the tunnel completely before the result is revealed. This makes
+        // the transformation read as tables -> tunnel -> dashboard instead of
+        // showing the charts underneath the tunnel artwork.
+        tl.to(
+          q('.bi-s2-tunnel'),
+          { opacity: 0, scale: 0.82, transformOrigin: 'center', duration: 0.4, ease: 'power2.in' },
+          t2 + 2.9
+        );
+
+        // The tables have now been converted into the dashboard: 2 line charts
+        // and a donut chart, with no tunnel elements left behind.
         tl.to(
           q('.bi-s2-dash-group'),
           { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.25)' },
-          t2 + 2.7
+          t2 + 3.35
         );
         tl.to(
           q('.bi-s2-dash-group .chart-line-pink'),
           { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' },
-          t2 + 2.8
+          t2 + 3.45
         );
         tl.to(
           q('.bi-s2-dash-group .chart-line-purple'),
           { strokeDashoffset: 0, duration: 1.1, ease: 'power2.inOut' },
-          t2 + 2.95
+          t2 + 3.6
         );
         tl.to(
           q('.bi-s2-dash-group .donut-seg-1, .bi-s2-dash-group .donut-seg-2, .bi-s2-dash-group .donut-seg-3'),
           { opacity: 1, scale: 1, duration: 0.75, stagger: 0.08, ease: 'back.out(1.25)' },
-          t2 + 3.05
+          t2 + 3.7
         );
 
         // Scene 2 Exit
