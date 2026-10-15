@@ -1,0 +1,2 @@
+export { SmarterSalesAnimation } from './SmarterSalesAnimation';
+
